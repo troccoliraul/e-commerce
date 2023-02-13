@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
-import ItemList from "./ItemList";
+import React, { useEffect, useState } from 'react';
+import ItemList from '../components/ItemList';
 import {productList} from '../data/data';
 import { useParams } from "react-router-dom";
 
-/*CSS*/
-import './styles/ItemListContainer.css';
+import './styles/Products.css';
 
+const Products = () => {
 
-const ItemListContainer = () => {
-  const {tipoProducto} = useParams();
+    const {tipoProducto} = useParams();
 
     const [productos, setProductos] = useState([]);
 
@@ -29,13 +28,12 @@ const ItemListContainer = () => {
         })
     },[tipoProducto])
     console.log(productos);
+    
     return (
-      <section className="item-list-container">
-        <h2 className="item-list-container__title">Productos destacados</h2>
-  
-        <ItemList items={productos}/>
-      </section>
-    );
-  };
-  
-  export default ItemListContainer;
+        <main className="products-page-container">
+            <ItemList items={productos}/>
+        </main>
+    )
+}
+
+export default Products

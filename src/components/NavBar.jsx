@@ -1,56 +1,60 @@
-import React from 'react';
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles/NavBar.css'
-import CartWidget from './CartWidget';
+import React from "react";
+import { Link } from "react-router-dom";
+import CartWidget from "./CartWidget";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import "./styles/NavBar.css";
 
-const NavBar = ({background})=>{
-    return(
-        <header className={`header navbar navbar-expand-lg navbar-light bg-light background--${background}`}>
-        <div className="container">
-            {/* Boton de menu*/}
-            <div className="navbar-brand">
-            <small className="navbar-toggler-icon"></small>        
-            </div>
-            
-            {/*links de navegacion*/}
-            
-            <nav className="navbar navbar-expand-lg navbar-light bg-light ">
-            <div className="collapse navbar-collapse">
-                <ul className="navbar-nav">
-                    <li className="nav-item">
-                        <a className="nav-link" href="/">Inicio</a>
-                    </li>
-                    <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle" href="/">
-                            Productos
-                        </a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="/">Ofertas</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="/">Contacto</a>
-                    </li>
-                </ul>
-              {/*<form className="form-inline my-2 my-lg-0">
-      <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-      <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>*/}
-    </div>
-            </nav>           
-            
-            {/* logo de la marca*/}
-            <div className="logo-container">
-                {/* <img src={brand} alt="logo"/> */}
-            </div>
+const NavBar = ({ background }) => {
+  const brand =
+    "https://www.qloud.ar/SITES/IMG/ryr-computacion-01-2021/206_07-11-2022-08-11-23-ryr-logo.png";
 
-            {/* cart widget */}
-            <CartWidget/>
+  return (
+    <header className={`header background--${background}`}>
+      
+      <div className="header-container">
+        
+        {/* Botón de menú  */}
+        <div className="menu-button">
+          <FontAwesomeIcon icon={faBars} size="lg" color="white"/>
+          <span>Menu</span>
         </div>
 
-        </header>
-        )
+        {/* links de navegación */}
+        <nav>
+          <ul className="nav-container">
+            <li className="products-item">
+              <Link to="/products">
+                Productos <span className="arrow"></span>
+              </Link>
+            </li>
+            <li>
+              <Link className={({isActive})=>isActive ? "claseActive": "claseInactive"} to="/products/celytablet">Celulares y Tablets</Link>
+            </li>
+            <li>
+              <Link className={({isActive})=>isActive ? "claseActive": "claseInactive"} to="/products/pcs">PC</Link>
+            </li>
+            <li>
+                <Link className={({isActive})=>isActive ? "claseActive": "claseInactive"} to="/products/notebooks">Noteboos</Link>
+            </li>
+          </ul>
+        </nav>
+
+        {/* logo de la marca */}
+        <div className="logo-container">
+          <Link to="/">
+            <img src={brand} alt="logo" />
+          </Link>
+        </div>
+
+        {/* cart widget */}
+        <Link to="/cart">
+          <CartWidget />
+        </Link>
+          
+      </div>
+    </header>
+  );
 };
 
 export default NavBar;

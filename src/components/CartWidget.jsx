@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
+import { CartContext } from '../context/CartContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 /*css*/
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/CartWidget.css'
 
 const CartWidget = () => {
+    //la lógica va siempre antes del return
+  
+    const cartContext = useContext(CartContext);
+    const { cart } = cartContext;
+  
     return (
-        <div className="cart-widget">
-            <i className="bi bi-cart" size="2x" color="white">
-                <div className="qty-display">0</div>
-            </i>
-        </div>
+      <div className="cart-widget">
+        {/* Acá puede ir cualquier ícono que quieran. En mi caso, estoy usando FontAwesome para React JS. */}
+        <FontAwesomeIcon icon={faShoppingCart} size="2x" color="white"/>
+        <div className="qty-display">{cart.length}</div>
+      </div>
     );
-};
-
-export default CartWidget;
+  };
+  
+  export default CartWidget;

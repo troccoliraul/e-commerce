@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState }from 'react';
 import { useNavigate, useLocation } from 'react-router';
-import { useState } from 'react';
 
 import './styles/ItemCount.css';
 
@@ -15,7 +14,7 @@ const ItemCount = ({ initial, stock, onAdd }) => {
 
   const addProduct = (num) => {
     setQty(qty + num);
-    console.log(addProduct)
+    // console.log(addProduct)
   };
 
   return (

@@ -39,6 +39,7 @@ const CartProvider = (props) => {
     const deleteCart = () => {
         setCart([]);
     }
+    
 
 
     return(

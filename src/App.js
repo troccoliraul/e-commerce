@@ -9,6 +9,7 @@ import DetailPage from "./pages/DetailPage";
 import Products from './pages/Products';
 import Page404 from './pages/Page404';
 import Footer from './components/Footer'
+import Checkout from './components/Checkout';
 
 export default function App() {
   return (<CartProvider>

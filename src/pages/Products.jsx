@@ -1,37 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ItemList from '../components/ItemList';
-import {productList} from '../data/data';
 import { useParams } from "react-router-dom";
+import { getAllProductsFromDB } from '../helpers/getData.jsx';
 
 import './styles/Products.css';
 
 const Products = () => {
+    const { tipoProducto } = useParams();
+    const [products, setProducts] = useState([]);
+    const [data, setData] = useState([])
 
-    const {tipoProducto} = useParams();
-
-    const [productos, setProductos] = useState([]);
-
-    const promesa = new Promise((resolve, reject)=>{
+    const promesa = new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve(productList);
+            resolve(data);
         }, 2000);
     })
 
-    useEffect(()=>{
-        promesa.then(resultado=>{
-            if(!tipoProducto){
-                setProductos(resultado)
-            } else{
-                const nuevaLista = resultado.filter(item=>item.categoria === tipoProducto);
-                setProductos(nuevaLista)
+    useEffect(() => {
+        getAllProductsFromDB(setData);
+        promesa.then(resultado => {
+            if (!tipoProducto) {
+                setProducts(resultado)
+            } else {
+                const nuevaLista = resultado.filter(item => item.category === tipoProducto);
+                setProducts(nuevaLista)
             }
         })
-    },[tipoProducto])
-    console.log(productos);
-    
+    }, [promesa, tipoProducto]);
+
     return (
         <main className="products-page-container">
-            <ItemList items={productos}/>
+            <ItemList products={products} />
         </main>
     )
 }

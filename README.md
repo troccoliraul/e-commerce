@@ -2,6 +2,18 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Introduccion
+
+El proyecto consta de una E-commerce de una tienda de informatica, que tiene distitas categorias y una funcionalidad basica para facilitar al usuario.
+las librerias utilizadas fueron:
+
+```
+cd e-commerce
+npm i
+npm install react-bootstrap bootstrap
+npm i --save @fortawesome/fontawesome-svg-core
+```
+
 ## Available Scripts
 
 In the project directory, you can run:

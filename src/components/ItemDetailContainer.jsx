@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { getProductById } from '../helpers/getData.js';
+import { getProductById } from '../helpers/getData.jsx';
 import ItemDetail from './ItemDetail';
+import { useParams } from "react-router-dom";
 import './styles/ItemDetailContainer.css';
 
-const ItemDetailContainer = ({ id }) => {
-  const [product, setProduct] = useState(null);
+const ItemDetailContainer = () => {
+  const {id} = useParams()
+  const [product, setProduct] = useState();
 
   useEffect(() => {
     getProductById(id, setProduct);

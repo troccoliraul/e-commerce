@@ -9,22 +9,29 @@ const CartListItem = () => {
     const { cart, deleteCartById, deleteCart } = cartContext;
 
     return (
-        <section className="list-cart-container">
+        <>
+            <div className='list-cart'>
             {cart ? (cart.map( product => {
-                return( <CartItem key={product.id} 
+                return(
+                    <div key={product.id}>
+                     <CartItem
+                                  id={product.id} 
                                   item={product} 
                                   deleteCartById={deleteCartById} 
-                        /> );
+                        />
+                    </div>);
                 }))
                   : <p>cargando productos</p>
             }
+            </div>
             {cart.length ? (<button 
                             className="button-primary button-padding"
                             onClick={deleteCart}
                       >Vaciar Carrito</button>)
                          : <p>No hay productos en el carrito</p>
             }
-        </section>
+            
+        </>
     )
 }
 
